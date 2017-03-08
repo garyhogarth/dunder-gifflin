@@ -57,7 +57,9 @@ app.post('/dgif',(req,res) => {
 
     res.send({
       response_type: 'in_channel',
-      text: gif.images.fixed_height.url
+      attachments: [{
+        image_url: gif.images.fixed_height.url
+      }]
     });
   }).catch((e) => {
     res.send('error');
