@@ -29,14 +29,25 @@ app.post('/dgif',(req,res) => {
     return res.send('Missing a search string. Did you forget to type something?')
   }
 
-  const url = `http://api.giphy.com/v1/gifs/search?q=the+office+${text}&api_key=${giphyApiKey}&limit=100&offset=0`;
+  const search = encodeURIComponent(text.trim());
+
+  const url = `http://api.giphy.com/v1/gifs/search?q=the+office+${search}&api_key=${giphyApiKey}&limit=100&offset=0`;
 
   axios.get(url).then((response) => {
     const {data} = response.data;
 
-    const gifs = data.filter((gif) => {
-      return gif.slug.includes('the-office') || gif.source.includes('the-office');
-    })
+    let gifs = data.filter((gif) => {
+      const doesIncludeTheOffice = gif.slug.includes('the-office') || gif.source.includes('the-office');
+      const doesIncludeSearch = gif.slug.includes(search) || gif.source.includes(search);
+
+      return doesIncludeTheOffice && doesIncludeSearch;
+    });
+
+    if (gifs.length === 0) {
+      gifs = data.filter((gif) => {
+        return doesIncludeTheOffice = gif.slug.includes('the-office') || gif.source.includes('the-office');
+      });
+    }
 
     if (gifs.length === 0) {
      return res.send(`No gifs found for "${text}"`);
