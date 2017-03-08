@@ -53,7 +53,8 @@ app.post('/dgif',(req,res) => {
      return res.send(`No gifs found for "${text}"`);
     }
 
-    const gif = _.sample(gifs);
+    const gif = gifs[0];
+    // const gif = _.sample(gifs);
 
     res.send({
       response_type: 'in_channel',
