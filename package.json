@@ -1,0 +1,25 @@
+{
+  "name": "dunder-gifflin",
+  "version": "1.0.0",
+  "description": "A simple slack bot that returns gifs from the office",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garyhogarth/dunder-gifflin.git"
+  },
+  "keywords": [
+    "slack"
+  ],
+  "author": "Gary Hogarth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garyhogarth/dunder-gifflin/issues"
+  },
+  "homepage": "https://github.com/garyhogarth/dunder-gifflin#readme",
+  "dependencies": {
+    "botkit": "^0.5.1"
+  }
+}
